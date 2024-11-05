@@ -27,9 +27,11 @@ const deleteTicket = async (id) => {
 };
 
 const updateTicketToClose = async (id) => {
-  await database.execute("UPDATE tickets SET is_active = false WHERE id = ?", [
-    id,
-  ]);
+  const updated_at = new Date();
+  await database.execute(
+    "UPDATE tickets SET is_active = false, updated_at = ? WHERE id = ?",
+    [updated_at, id],
+  );
 };
 
 module.exports = {
