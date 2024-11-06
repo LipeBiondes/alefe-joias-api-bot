@@ -25,6 +25,12 @@ const getTicketByUserId = async (req, res) => {
 const createTicket = async (req, res) => {
   const { title, description, userId } = req.body;
 
+  const userExists = await ticketModel.createTicketUserExists(userId);
+
+  if (!userExists.length) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
   await ticketModel.createTicket(title, description, userId);
 
   return res.status(204).json();
@@ -33,6 +39,12 @@ const createTicket = async (req, res) => {
 const deleteTicket = async (req, res) => {
   const { ticketId } = req.params;
 
+  const ticket = await ticketModel.getTicketById(ticketId);
+
+  if (ticket.length === 0) {
+    return res.status(404).json({ message: "Ticket not found" });
+  }
+
   await ticketModel.deleteTicket(ticketId);
 
   return res.status(204).json();
@@ -40,6 +52,12 @@ const deleteTicket = async (req, res) => {
 
 const updateTicketToClose = async (req, res) => {
   const { ticketId } = req.params;
+
+  const ticket = await ticketModel.getTicketById(ticketId);
+
+  if (ticket.length === 0) {
+    return res.status(404).json({ message: "Ticket not found" });
+  }
 
   await ticketModel.updateTicketToClose(ticketId);
 
