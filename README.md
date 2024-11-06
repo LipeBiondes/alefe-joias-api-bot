@@ -56,6 +56,12 @@ Um bot para a empresa Alefe Joias. Este projeto foi desenvolvido para automatiza
 - `GET /orders/:userId`: Retorna todos os pedidos de um usuário.
 - `GET /order/:orderId`: Retorna um pedido pelo ID.
 
+- `GET /tickets`: Retorna todos os tickets.
+- `GET /tickets/:userId`: Retorna todos os tickets de um usuário.
+- `POST /ticket`: Cria um novo ticket.
+- `DELETE /ticket/:ticketId`: Deleta um ticket pelo ID.
+- `PUT /ticket/:ticketId`: Atualiza um ticket para fechado pelo ID.
+
 ## Passo a Passo para Uso
 
 1. Clone o repositório:
