@@ -15,6 +15,15 @@ const getTicketByUserId = async (id) => {
   return ticket;
 };
 
+const getTicketById = async (id) => {
+  const [ticket] = await database.execute(
+    "SELECT * FROM tickets WHERE id = ?",
+    [id],
+  );
+
+  return ticket;
+};
+
 const createTicket = async (title, description, userId) => {
   await database.execute(
     "INSERT INTO tickets (title, description, user_id) VALUES (?, ?, ?)",
@@ -34,10 +43,19 @@ const updateTicketToClose = async (id) => {
   );
 };
 
+const createTicketUserExists = async (userId) => {
+  const [user] = await database.execute("SELECT * FROM users WHERE id = ?", [
+    userId,
+  ]);
+  return user;
+};
+
 module.exports = {
   getAllTickets,
   getTicketByUserId,
   createTicket,
   deleteTicket,
   updateTicketToClose,
+  createTicketUserExists,
+  getTicketById,
 };
