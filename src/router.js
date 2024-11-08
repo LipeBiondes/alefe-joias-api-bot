@@ -41,6 +41,8 @@ const {
   validateParamsUpdateTicketToClose,
 } = require("./middlewares/tickets.middlewares");
 
+const { getGoldValue } = require("./controllers/gold.controller");
+
 const router = express.Router();
 
 router.get("/users", getAllUsers);
@@ -71,5 +73,7 @@ router.put(
   validateParamsUpdateTicketToClose,
   updateTicketToClose,
 );
+
+router.get("/gold", getGoldValue);
 
 module.exports = router;
