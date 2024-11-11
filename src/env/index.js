@@ -7,6 +7,7 @@ const envSchema = z.object({
   MYSQL_DB: z.string(),
   MYSQL_USER: z.string(),
   MYSQL_PASSWORD: z.string(),
+  MYSQL_HOST: z.string(),
 });
 
 const _env = envSchema.safeParse(process.env);
